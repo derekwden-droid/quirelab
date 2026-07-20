@@ -20,6 +20,9 @@ function firstLabelValue(label: any): string {
   if (typeof label === "string") return label;
   if (Array.isArray(label)) return firstLabelValue(label[0]);
   if (typeof label === "object") {
+    if ("@value" in label) return firstLabelValue(label["@value"]);
+    if ("en" in label) return firstLabelValue(label.en);
+    if ("none" in label) return firstLabelValue(label.none);
     const vals = Object.values(label)[0];
     return firstLabelValue(vals);
   }

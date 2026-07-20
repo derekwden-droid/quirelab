@@ -17,7 +17,9 @@ const COLOR_VARS: Record<string, string> = {
   voynich: "var(--series-1)",
   english: "var(--series-2)",
   latin: "var(--series-3)",
-  custom: "var(--series-4)",
+  german: "var(--series-4)",
+  italian: "var(--series-5)",
+  custom: "var(--series-6)",
 };
 
 const base = import.meta.env.BASE_URL;
@@ -33,10 +35,12 @@ export function TextLab() {
     let cancelled = false;
     (async () => {
       try {
-        const [zl, en, la] = await Promise.all([
+        const [zl, en, la, de, it] = await Promise.all([
           fetch(`${base}data/voynich_zl.txt`).then((r) => r.text()),
           fetch(`${base}data/english_alice.txt`).then((r) => r.text()),
           fetch(`${base}data/latin_caesar.txt`).then((r) => r.text()),
+          fetch(`${base}data/german_faust.txt`).then((r) => r.text()),
+          fetch(`${base}data/italian_dante.txt`).then((r) => r.text()),
         ]);
         if (cancelled) return;
         const vc = parseIvtff(zl);
@@ -45,6 +49,8 @@ export function TextLab() {
           { id: "voynich", name: "Voynich (EVA)", colorVar: COLOR_VARS.voynich, stats: computeStats(vc.words) },
           { id: "english", name: "English (Alice)", colorVar: COLOR_VARS.english, stats: computeStats(tokenizeNatural(en)) },
           { id: "latin", name: "Latin (Caesar)", colorVar: COLOR_VARS.latin, stats: computeStats(tokenizeNatural(la)) },
+          { id: "german", name: "German (Faust)", colorVar: COLOR_VARS.german, stats: computeStats(tokenizeNatural(de)) },
+          { id: "italian", name: "Italian (Dante)", colorVar: COLOR_VARS.italian, stats: computeStats(tokenizeNatural(it)) },
         ]);
       } catch (e) {
         if (!cancelled) setError(`Failed to load bundled corpora: ${String(e)}`);

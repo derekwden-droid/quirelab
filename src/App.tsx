@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Viewer } from "./components/Viewer";
 import { TextLab } from "./components/TextLab";
+import { CipherLab } from "./components/CipherLab";
 import { About } from "./components/About";
 
-type Tab = "lab" | "viewer" | "about";
+type Tab = "lab" | "cipher" | "viewer" | "about";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("lab");
@@ -38,6 +39,9 @@ export default function App() {
         <button className={tab === "lab" ? "active" : ""} onClick={() => setTab("lab")}>
           Text Lab
         </button>
+        <button className={tab === "cipher" ? "active" : ""} onClick={() => setTab("cipher")}>
+          Cipher Lab
+        </button>
         <button className={tab === "viewer" ? "active" : ""} onClick={() => setTab("viewer")}>
           Manuscript Viewer
         </button>
@@ -46,6 +50,7 @@ export default function App() {
         </button>
       </nav>
       {tab === "lab" && <TextLab />}
+      {tab === "cipher" && <CipherLab />}
       {tab === "viewer" && <Viewer />}
       {tab === "about" && <About />}
       <footer>

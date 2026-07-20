@@ -7,6 +7,18 @@ const PRESETS = [
     name: "Voynich Manuscript — Beinecke MS 408 (Yale)",
     url: "https://collections.library.yale.edu/manifests/2002046",
   },
+  {
+    name: "Codex Manesse — Cod. Pal. germ. 848 (Heidelberg)",
+    url: "https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg848/manifest.json",
+  },
+  {
+    name: "Abrogans, oldest German book — Cod. Sang. 911 (St. Gallen)",
+    url: "https://e-codices.unifr.ch/metadata/iiif/csg-0911/manifest.json",
+  },
+  {
+    name: "Book of Deer, 10th-c. Gospel — MS Ii.6.32 (Cambridge)",
+    url: "https://cudl.lib.cam.ac.uk/iiif/MS-II-00006-00032",
+  },
 ];
 
 export function Viewer() {

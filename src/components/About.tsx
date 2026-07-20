@@ -41,6 +41,16 @@ export function About() {
           α is the negative least-squares slope of log₁₀(frequency) against log₁₀(rank), fitted
           over words occurring at least 3 times.
         </p>
+        <h3>Cipher Lab</h3>
+        <p className="note">
+          Language models (letter frequencies and quadgram log-likelihoods) are built in the
+          browser from the bundled corpora, with accents folded to base letters. The index of
+          coincidence is Friedman&apos;s unnormalized IC. Caesar shifts are ranked by χ² against
+          reference frequencies; substitution keys are recovered by hill climbing with random
+          restarts, scored by quadgram log-likelihood. These are the standard classical attacks —
+          they demonstrably crack monoalphabetic ciphers, and demonstrably do not apply to
+          Voynichese, which violates their statistical premises.
+        </p>
       </div>
 
       <div className="card">
@@ -58,12 +68,16 @@ export function About() {
             IIIF digital collections
           </a>
           . <br />
-          <strong>Baseline texts:</strong> <em>Alice&apos;s Adventures in Wonderland</em> (Lewis
-          Carroll) and <em>De Bello Gallico I–IV</em> (Caesar), both public domain via{" "}
+          <strong>Baseline texts:</strong> <em>Alice&apos;s Adventures in Wonderland</em>{" "}
+          (Carroll), <em>De Bello Gallico I–IV</em> (Caesar), <em>Faust I</em> (Goethe), and{" "}
+          <em>La Divina Commedia</em> (Dante), all public domain via{" "}
           <a href="https://www.gutenberg.org" target="_blank" rel="noreferrer">
             Project Gutenberg
           </a>
           . <br />
+          <strong>Viewer presets</strong> stream from the public IIIF services of Yale (Beinecke),
+          Heidelberg University Library (Codex Manesse), the Abbey Library of St. Gall via
+          e-codices (Abrogans), and Cambridge University Library (Book of Deer). <br />
           <strong>Key literature:</strong> Montemurro &amp; Zanette,{" "}
           <em>Keywords and Co-Occurrence Patterns in the Voynich Manuscript</em>, PLoS ONE 2013;
           Bennett, <em>Scientific and Engineering Problem-Solving with the Computer</em>, 1976.

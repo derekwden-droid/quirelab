@@ -12,7 +12,9 @@
   --series-1: #2a78d6; /* Voynich */
   --series-2: #1baf7a; /* English */
   --series-3: #eda100; /* Latin */
-  --series-4: #008300; /* Custom */
+  --series-4: #008300; /* German */
+  --series-5: #4a3aa7; /* Italian */
+  --series-6: #e34948; /* Custom */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +33,8 @@
     --series-2: #199e70;
     --series-3: #c98500;
     --series-4: #008300;
+    --series-5: #9085e9;
+    --series-6: #e66767;
   }
 }
 
@@ -49,6 +53,8 @@
   --series-2: #199e70;
   --series-3: #c98500;
   --series-4: #008300;
+  --series-5: #9085e9;
+  --series-6: #e66767;
 }
 
 * {
