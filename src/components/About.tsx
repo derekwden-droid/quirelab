@@ -31,10 +31,11 @@ export function About() {
         <h3>Entropy</h3>
         <p className="note">
           Character entropies are computed over the space-joined word stream (the word separator
-          participates as a symbol, following Bennett 1976). H1 is first-order Shannon entropy; H2
-          is the conditional entropy H(Xₙ | Xₙ₋₁) = H(bigrams) − H(unigrams), in bits per
-          character. Note that entropy values depend on the transcription alphabet — EVA itself is
-          one hypothesis about what the &quot;characters&quot; are.
+          participates as a symbol, following Bennett 1976). H1 is first-order Shannon entropy; the
+          conditional (block) entropies are H2 = H(Xₙ | Xₙ₋₁) = H(bigrams) − H(unigrams) and H3 =
+          H(Xₙ | Xₙ₋₂Xₙ₋₁) = H(trigrams) − H(bigrams), all in bits per character. Note that entropy
+          values depend on the transcription alphabet — EVA itself is one hypothesis about what the
+          &quot;characters&quot; are.
         </p>
         <h3>Zipf fit</h3>
         <p className="note">
@@ -79,8 +80,34 @@ export function About() {
           Heidelberg University Library (Codex Manesse), the Abbey Library of St. Gall via
           e-codices (Abrogans), and Cambridge University Library (Book of Deer). <br />
           <strong>Key literature:</strong> Montemurro &amp; Zanette,{" "}
-          <em>Keywords and Co-Occurrence Patterns in the Voynich Manuscript</em>, PLoS ONE 2013;
-          Bennett, <em>Scientific and Engineering Problem-Solving with the Computer</em>, 1976.
+          <a
+            href="https://doi.org/10.1371/journal.pone.0066344"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <em>Keywords and Co-Occurrence Patterns in the Voynich Manuscript</em>
+          </a>
+          , PLoS ONE 2013; Bennett,{" "}
+          <em>Scientific and Engineering Problem-Solving with the Computer</em>, 1976.
+        </p>
+        <p className="note">
+          <strong>Going deeper:</strong> René Zandbergen&apos;s{" "}
+          <a href="http://www.voynich.nu" target="_blank" rel="noreferrer">
+            voynich.nu
+          </a>{" "}
+          is the definitive reference site (transliterations, analysis, bibliography); the{" "}
+          <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noreferrer">
+            Beinecke catalog record
+          </a>{" "}
+          hosts the full manuscript;{" "}
+          <a href="https://www.jasondavies.com/voynich/" target="_blank" rel="noreferrer">
+            Jason Davies&apos; Voynich Voyager
+          </a>{" "}
+          pairs the transliteration with page images. QuireLab is open source —{" "}
+          <a href="https://github.com/derekwden-droid/quirelab" target="_blank" rel="noreferrer">
+            github.com/derekwden-droid/quirelab
+          </a>
+          .
         </p>
       </div>
     </>

@@ -15,6 +15,7 @@ export interface CorpusStats {
   h0: number; // log2(alphabet)
   h1: number; // first-order Shannon entropy, bits/char
   h2cond: number; // second-order conditional entropy H(X_n | X_{n-1}), bits/char
+  h3cond: number; // third-order conditional entropy H(X_n | X_{n-2} X_{n-1}), bits/char
   zipf: ZipfPoint[];
   zipfAlpha: number;
   wordLenDist: { len: number; p: number }[];
@@ -39,28 +40,35 @@ function entropyFromCounts(counts: Map<string, number>, total: number): number {
 /**
  * Character entropies are computed over the space-joined word stream so the
  * word-boundary symbol participates, matching the convention used by Bennett
- * (1976) and most Voynich literature. H2 is conditional:
- * H(X_n | X_{n-1}) = H(bigram) - H(unigram).
+ * (1976) and most Voynich literature. The conditional (block) entropies are:
+ *   H2 = H(Xₙ | Xₙ₋₁)       = H(bigram)  − H(unigram)
+ *   H3 = H(Xₙ | Xₙ₋₂ Xₙ₋₁)  = H(trigram) − H(bigram)
  */
 function characterEntropies(words: string[]) {
   const stream = words.join(" ");
   const uni = new Map<string, number>();
   const bi = new Map<string, number>();
+  const tri = new Map<string, number>();
   for (let i = 0; i < stream.length; i++) {
-    const c = stream[i];
-    uni.set(c, (uni.get(c) ?? 0) + 1);
+    uni.set(stream[i], (uni.get(stream[i]) ?? 0) + 1);
     if (i < stream.length - 1) {
-      const b = c + stream[i + 1];
+      const b = stream.slice(i, i + 2);
       bi.set(b, (bi.get(b) ?? 0) + 1);
+    }
+    if (i < stream.length - 2) {
+      const t = stream.slice(i, i + 3);
+      tri.set(t, (tri.get(t) ?? 0) + 1);
     }
   }
   const h1 = entropyFromCounts(uni, stream.length);
   const hPair = entropyFromCounts(bi, stream.length - 1);
+  const hTri = entropyFromCounts(tri, stream.length - 2);
   return {
     alphabetSize: uni.size,
     h0: Math.log2(uni.size),
     h1,
     h2cond: hPair - h1,
+    h3cond: hTri - hPair,
     uni,
     streamLen: stream.length,
   };
@@ -119,6 +127,7 @@ export function computeStats(words: string[]): CorpusStats {
     h0: ent.h0,
     h1: ent.h1,
     h2cond: ent.h2cond,
+    h3cond: ent.h3cond,
     zipf,
     zipfAlpha: fitZipfAlpha(zipf),
     wordLenDist,
