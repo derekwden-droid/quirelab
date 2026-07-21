@@ -109,6 +109,13 @@ export function About() {
           </a>
           .
         </p>
+        <h3>Privacy</h3>
+        <p className="note">
+          All analysis — every entropy calculation, cipher attack, and uploaded file — runs
+          entirely in your browser. No text you paste or upload is ever transmitted anywhere. The
+          site uses Vercel Web Analytics for aggregate visit counts (page views, referrer, country);
+          it sets no cookies, collects no personal data, and does not track you across sites.
+        </p>
       </div>
     </>
   );

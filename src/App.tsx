@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Viewer } from "./components/Viewer";
 import { TextLab } from "./components/TextLab";
 import { CipherLab } from "./components/CipherLab";
@@ -57,6 +58,8 @@ export default function App() {
         QuireLab · open manuscript analytics · images &amp; transliterations remain the property of
         their institutions — see About &amp; Methods for credits.
       </footer>
+      {/* Vercel Web Analytics: cookieless, aggregate-only, no personal data collected. */}
+      <Analytics />
     </>
   );
 }
